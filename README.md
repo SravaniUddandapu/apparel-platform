@@ -19,3 +19,17 @@ This project is an MVP for a platform that allows users to submit information ab
 1. Clone the repository:
    ```bash
    git clone https://github.com/SravaniUddandapu/apparel-platform.git
+2. Navigate into the project directory:
+   ```bash
+   cd apparel-platform
+3. Install the necessary dependencies:
+   ```bash
+   npm install
+4. Start the server:
+   ```bash
+   node server.js
+5. Open your browser and go to http://localhost:3000/ to view the app
+   
+
+   
+
