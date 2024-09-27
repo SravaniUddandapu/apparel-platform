@@ -28,7 +28,7 @@ This project is an MVP for a platform that allows users to submit information ab
 4. Start the server:
    ```bash
    node server.js
-5. Open your browser and go to http://localhost:3000/ to view the app
+5. Open your browser and go to (http://localhost:3000) to view the app
    
 
    
