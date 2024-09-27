@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Apparel</title>
+    <style>
+        /* Styling to make the form look modern and aesthetic */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .success-message {
+            color: green;
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Submit Your Apparel</h2>
+        <form id="apparelForm">
+            <input type="text" id="name" placeholder="Apparel Name" required />
+            <select id="condition" required>
+                <option value="">Select Condition</option>
+                <option value="Like New">Like New</option>
+                <option value="Gently Used">Gently Used</option>
+                <option value="Worn Out">Worn Out</option>
+                <option value="Torn">Torn</option>
+                <option value="Stained">Stained</option>
+                <option value="Outdated">Outdated</option>
+            </select>
+            <select id="disposalMethod" required>
+                <option value="">Choose Disposal Method</option>
+                <option value="Donation">Donation</option>
+                <option value="Recycling">Recycling</option>
+                <option value="Disposal">Disposal</option>
+            </select>
+            <button type="submit">Submit</button>
+            <p id="message"></p>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('apparelForm');
+        const message = document.getElementById('message');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            const name = document.getElementById('name').value;
+            const condition = document.getElementById('condition').value;
+            const disposalMethod = document.getElementById('disposalMethod').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, condition, disposalMethod }),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    message.textContent = result.message;
+                    message.className = 'success-message';
+                } else {
+                    message.textContent = `Error: ${result.message}`;
+                    message.className = 'error-message';
+                }
+            } catch (error) {
+                console.error("Fetch error:", error); // Log fetch errors
+                message.textContent = 'Error: Failed to submit.';
+                message.className = 'error-message';
+            }
+        });
+    </script>
+</body>
+</html>
