@@ -29,7 +29,9 @@ This project is an MVP for a platform that allows users to submit information ab
    ```bash
    node server.js
 5. Open your browser and go to (http://localhost:3000) to view the app
-   
+
+## Project Demo
+You can view the video demo of the project here (https://drive.google.com/file/d/1le7IFk3u8eae7WGPJ11FqGwPvFgcCK1i/view?usp=sharing)
 
    
 
